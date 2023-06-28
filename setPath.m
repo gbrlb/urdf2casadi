@@ -4,5 +4,5 @@ project_path=genpath(location_repo);
 addpath(project_path);
 
 %Set CasADi path
-casadi_path='/home/iiticublap215/casadi-linux-octave-5.2.0-v3.5.5';
+casadi_path='C:\Users\ARCLab\Documents\GabrielB\Matlab\casadi-3.6.3';
 addpath(casadi_path)
