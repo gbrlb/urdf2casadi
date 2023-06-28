@@ -14,6 +14,7 @@ import urdf2casadi.Dynamics.createMassAndCoriolisMatrixFunction
 import urdf2casadi.Dynamics.symbolicInverseDynamics
 import urdf2casadi.Dynamics.auxiliarySymbolicDynamicsFunctions.createSpatialTransformsFunction
 import urdf2casadi.Utils.auxiliaryFunctions.plot_trajectories
+import urdf2casadi.Utils.auxiliaryFunctions.romualdi2020_generate_min_jerk_trajectories
 
 %% Input urdf file to acquire robot structure
 robotURDFModel = kuka_kr210;
