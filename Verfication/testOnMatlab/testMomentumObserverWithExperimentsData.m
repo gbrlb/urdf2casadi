@@ -1,5 +1,8 @@
 %% Choose a urdf model
-location_tests_folder = pwd;
+setPath()
+filename = matlab.desktop.editor.getActiveFilename;
+[location_tests_folder,~,~] = fileparts(filename);
+a1 = [location_tests_folder,'/../../URDFs/a1.urdf'];
 kuka_urdf = [location_tests_folder,'/../../URDFs/kr30_ha-identified.urdf'];
 twoLink_urdf = [location_tests_folder,'/../../URDFs/twoLinks.urdf'];
 kuka_kr210 = [location_tests_folder,'/../../URDFs/kuka_kr210.urdf'];

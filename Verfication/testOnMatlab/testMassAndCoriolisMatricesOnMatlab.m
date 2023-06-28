@@ -1,14 +1,18 @@
 % Test the Mass and the Coriolis matrices
 
 %% Choose a urdf model
-location_tests_folder = pwd;
-kuka_urdf = [location_tests_folder,'/../../URDFs/kr30_ha-identified.urdf'];
+setPath()
+filename = matlab.desktop.editor.getActiveFilename;
+[location_tests_folder,~,~] = fileparts(filename);
+a1 = [location_tests_folder,'/../../URDFs/a1.urdf'];
+kuka_urdf = [location_tests_folder,'/../../URDFs/kr30_ha-identified.urdf']
 twoLink_urdf = [location_tests_folder,'/../../URDFs/twoLinks.urdf'];
 kuka_kr210 = [location_tests_folder,'/../../URDFs/kuka_kr210.urdf'];
 iCub_r_leg = [location_tests_folder,'/../../URDFs/iCub_r_leg.urdf'];
 
 %% Input urdf file to acquire robot structure
-robotURDFModel=kuka_kr210;
+mdlLoader.model()
+robotURDFModel=a1;
 
 %% Import necesary functions
 import urdf2casadi.Utils.modelExtractionFunctions.extractSystemModel
@@ -26,7 +30,7 @@ gravityModulus = 9.80665;
 tol = 1e-10;
 %% Symbolic functions
 % Inverse dynamics symbolic function
-symbolicIDFunction = symbolicInverseDynamics(robotURDFModel,0);
+symbolicIDFunction = symbolicInverseDynamics(robotURDFModel,0)
 % Compute mass matrix, its derivative and Coriolis matrix with an efficient algorithm
 smds = extractSystemModel(robotURDFModel);
 nrOfJoints = smds.NB;

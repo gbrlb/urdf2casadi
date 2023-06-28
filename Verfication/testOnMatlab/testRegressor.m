@@ -1,6 +1,8 @@
 % Test the regressor
-
-location_tests_folder = pwd;
+setPath()
+filename = matlab.desktop.editor.getActiveFilename;
+[location_tests_folder,~,~] = fileparts(filename);
+a1 = [location_tests_folder,'/../../URDFs/a1.urdf'];
 %% Choose a urdf model
 kuka_urdf = [location_tests_folder,'/../../URDFs/kr30_ha-identified.urdf'];
 twoLink_urdf = [location_tests_folder,'/../../URDFs/twoLinks.urdf'];
@@ -12,7 +14,7 @@ import urdf2casadi.Utils.inverseDynamicsInertialParametersRegressor
 import urdf2casadi.Utils.iDynTreeDynamicsFunctions.computeRegressorIdynTree
 
 %% Input urdf file to acquire robot structure
-robotURDFModel = kuka_urdf;
+robotURDFModel = a1;
 
 %% Generate functions
 % Fix location folder to store the generated c and .mex files

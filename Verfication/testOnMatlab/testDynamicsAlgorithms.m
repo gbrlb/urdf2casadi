@@ -1,16 +1,18 @@
 %% This is a script to compare the result of the symbolic expression with the result obtained using iDynTree(https://github.com/robotology/idyntree)
-
+setPath()
 % Fix location of the folder to store the generated c and .mex files
-location_tests_folder = pwd;
+filename = matlab.desktop.editor.getActiveFilename;
+[location_tests_folder,~,~] = fileparts(filename);
 location_generated_functions = [location_tests_folder,'/../../automaticallyGeneratedFunctions'];
 %% Choose a urdf model
+a1 = [location_tests_folder,'/../../URDFs/a1.urdf'];
 kuka_urdf = '/home/iiticublap215/idjl-model-identification/results/identification_results/kuka_kr30_ha/urdf/kr30_ha-identified.urdf';
 twoLink_urdf = [location_tests_folder,'/../../URDFs/twoLinks.urdf'];
 kuka_kr210 = [location_tests_folder,'/../../URDFs/kuka_kr210.urdf'];
 iCub_r_leg = [location_tests_folder,'/../../URDFs/iCub_r_leg.urdf'];
 
 %% Input urdf file to acquire robot structure
-robotModelURDF = kuka_kr210;
+robotModelURDF = a1;
 
 %% Get number of joints using iDynTree
 mdlLoader = iDynTree.ModelLoader();

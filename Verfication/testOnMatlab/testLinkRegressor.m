@@ -1,7 +1,10 @@
 %% Test Newton-Euler law on a single link
 
 %% Fix location folder to store the generated c and .mex files
-location_tests_folder = pwd;
+setPath()
+filename = matlab.desktop.editor.getActiveFilename;
+[location_tests_folder,~,~] = fileparts(filename);
+a1 = [location_tests_folder,'/../../URDFs/a1.urdf'];
 
 %% Choose a urdf model
 kuka_urdf = [location_tests_folder,'/../../URDFs/kr30_ha-identified.urdf'];
@@ -16,7 +19,7 @@ import urdf2casadi.Identification.auxiliarySymbolicDynamicsFunctions.computeLink
 import urdf2casadi.Utils.Spatial.crf
 
 %% Input urdf file to acquire robot structure
-robotModelURDF = iCub_r_leg;
+robotModelURDF = a1;
 %Load urdf and convert to SMDS format
 smds = extractSystemModel(robotModelURDF);
 jointPos = [pi/6 0 0 0 0 0]';

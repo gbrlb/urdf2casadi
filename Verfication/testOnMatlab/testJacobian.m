@@ -1,13 +1,15 @@
 %% Choose a urdf model
-location_tests_folder = pwd;
+setPath()
+filename = matlab.desktop.editor.getActiveFilename;
+[location_tests_folder,~,~] = fileparts(filename);
+a1 = [location_tests_folder,'/../../URDFs/a1.urdf'];
 kuka_urdf = [location_tests_folder,'/../../URDFs/kr30_ha-identified.urdf'];
 twoLink_urdf = [location_tests_folder,'/../../URDFs/twoLinks.urdf'];
 kuka_kr210 = [location_tests_folder,'/../../URDFs/kuka_kr210.urdf'];
 iCub_r_leg = [location_tests_folder,'/../../URDFs/iCub_r_leg.urdf'];
 
 %% Input urdf file to acquire robot structure
-robotURDFModel = kuka_kr210;
-
+robotURDFModel = a1;
 %% Generate functions
 % Fix location folder to store the generated c and .mex files
 location_generated_functions = [location_tests_folder,'/../../automaticallyGeneratedFunctions'];
@@ -15,14 +17,12 @@ opts.geneate_c_code = true;
 opts.location_generated_fucntion = location_generated_functions;
 opts.FrameVelocityRepresentation = "MIXED_REPRESENTATION";
 [J_symb,X,XForce,S,O_X_ee] = urdf2casadi.Dynamics.auxiliarySymbolicDynamicsFunctions.createSpatialTransformsFunction(robotURDFModel,opts);
-
-% IDynTree variables
+%% IDynTree variables
 mdlLoader = iDynTree.ModelCalibrationHelper();
 mdlLoader.loadModelFromFile(robotURDFModel);
 kinDynComp = iDynTree.KinDynComputations();
 kinDynComp.loadRobotModel(mdlLoader.model());
-
-% Set the body-fixed frame (left-trivialized velocity) representation
+%% Set the body-fixed frame (left-trivialized velocity) representation
 kinDynComp.setFrameVelocityRepresentation(iDynTree.MIXED_REPRESENTATION);
 model_iDyn = kinDynComp.model();
 
@@ -33,7 +33,7 @@ grav = iDynTree.Vector3();
 J_idyn = iDynTree.MatrixDynSize();
 
 
-% Constants
+%% Constants
 gravityModulus = 9.80665;
 baseFrame = 0;
 eeFrame = 6;
