@@ -1,8 +1,13 @@
-% Set the projects path 
-location_repo = pwd;
-project_path=genpath(location_repo);
-addpath(project_path);
+function setPath()
+    % Set the projects path 
+    clear global;  
+    clc;
+    filename = matlab.desktop.editor.getActiveFilename;
+    [filepath,~,~] = fileparts(filename);
+    project_path=genpath(filepath);
+    addpath(project_path);
 
-%Set CasADi path
-casadi_path='C:\Users\ARCLab\Documents\GabrielB\Matlab\casadi-3.6.3';
-addpath(casadi_path)
+    %Set CasADi path
+    casadi_path='C:\Users\ARCLab\Documents\GabrielB\Matlab\casadi-3.6.3';
+    addpath(casadi_path);
+end
